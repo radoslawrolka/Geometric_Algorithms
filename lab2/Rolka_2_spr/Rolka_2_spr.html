@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Algorytmy geometryczne - Laboratorium 2 - Sprawozdanie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(51,53,75); /* Light gray background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            page-break-after: always; /* Force page break after each section */
+        }
+
+        @page {
+            size: A4; /* You can specify the desired page size, e.g., A4, letter, etc. */
+            margin: 2cm; /* Adjust margins as needed */
+        }
+
+        .lab-title {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .lab-author {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .lab-date {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .table-of-contents {
+            background-color: #ffffff; /* White paper sheet background */
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .table-of-contents a {
+            text-decoration: none;
+            color: #0073e6; /* Blue link color */
+        }
+
+        .table-of-contents ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .table-of-contents li {
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+
+        .paper-sheet {
+            background-color: #ffffff; /* White paper sheet background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Paper sheet shadow */
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 28px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 15px;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: justify;
+            text-indent: 1.5em; /* Adjust the indent size as needed */
+        }
+
+        d {
+            font-size: 14px;
+            text-align: center;
+            display: block; /* Ensure it's a block-level element for text-align to work */
+            margin: 0 auto; /* Center the block element horizontally */
+        }
+
+
+
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            text-align: justify;
+        }
+
+        li {
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            margin: 10px auto;
+        }
+
+        .image img {
+            width: 400px; /* Set the width to your desired size */
+            height: 250px; /* Set the height to your desired size */
+        }
+
+        .image-container {
+            display: flex; /* Display images in a row */
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+        }
+
+        .image {
+            margin: 0 10px; /* Add space between the images */
+            text-align: center; /* Center the text below the images */
+        }
+
+        .gif-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gif {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        /* Style for the text (figcaption) */
+        figcaption {
+            text-align: center; /* Center the text */
+            font-size: 14px; /* Adjust the font size to your preference */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="paper-sheet">
+
+        <div class="table-of-contents">
+            <h1 class="lab-title">Algorytmy geometryczne - Laboratorium 2 - Sprawozdanie</h1>
+            <p class="lab-author">Radosław Rolka<br>Informatyka WI, II rok<br>Gr 6, tydz. A czwartek 13:00</p>
+            <p class="lab-date"></p>
+            <ul>
+                <li><a href="#sec-wstep">1 Wstęp</a></li>
+                <ul>
+                    <li><a href="#sec-cele-cwiczenia">1.1 Cel ćwiczenia</a></li>
+                    <li><a href="#sec-program-cwiczenia">1.2 Program ćwiczenia</a></li>
+                </ul>
+                <li><a href="#sec-wykorzystane-narzedzia">2 Wykorzystane narzędzia</a></li>
+                <ul>
+                    <li><a href="#sec-srodowisko">2.1 Środowisko</a></li>
+                    <li><a href="#sec-sprzet">2.2 Sprzęt</a></li>
+                </ul>
+                <li><a href="#sec-przebieg-cwiczen">3 Przebieg ćwiczeń</a></li>
+                <ul>
+                    <li><a href="#sec-generowanie-punktow">3.1 Generowanie punktów</a></li>
+                    <li><a href="#sec-przygotowanie-algorytmu-grahama">3.2 Przygotowanie algorytmu Grahama</a></li>
+                    <li><a href="#sec-przygotowanie-algorytmu-jarvisa">3.3 Przygotowanie algorytmu Jarvisa</a></li>
+                </ul>
+                <li><a href="#sec-wizualizacja-graficzna">4 Wizualizacja graficzna</a></li>
+                <ul>
+                    <li><a href="#sec-wizualizacja-punktów-z-przedzialu-100-100">4.1 Otoczka punktów z przedziału [-100, 100]</a></li>
+                    <li><a href="#sec-wizualizacja-punktów-lezacych-na-okregu-o00-r10">4.2 Otoczka punktów leżących na okręgu (o=(0,0), R=(10))</a></li>
+                    <li><a href="#sec-wizualizacja-punktów-lezacych-na-bokach-prostokata-o-wierzcholkach-a-10-10-d-10-10">4.3 Otoczka punktów leżących na bokach prostokąta o wierzchołkach (a=(-10, -10), d=(10, 10))</a></li>
+                    <li><a href="#sec-wizualizacja-punktów-na-dwoch-bokach-i-przekatnych-kwadratu-a00-d1010">4.4 Otoczka punktów na dwóch bokach i przekątnych kwadratu (a=(0,0), d=(10,10))</a></li>
+                </ul>
+                <li><a href="#sec-porownanie-czasu-dzialania-algorytmow">5 Porównanie czasu działania algorytmów</a></li>
+                <ul>
+                    <li><a href="#sec-punkty-z-przedzialu-100-100">5.1 Punkty z przedziału [-100, 100]</a></li>
+                    <li><a href="#sec-punkty-lezace-na-okregu-o-00-r10">5.2 Punkty leżące na okręgu (o=(0,0), R=(10))</a></li>
+                    <li><a href="#sec-punkty-lezace-na-bokach-prostokata-o-wierzcholkach-a-10-10-d-10-10">5.3 Punkty leżące na bokach prostokąta o wierzchołkach (a=(-10, -10), d=(10, 10))</a></li>
+                    <li><a href="#sec-punkty-na-dwoch-bokach-i-przekatnych-kwadratu-a00-d1010">5.4 Punkty na dwóch bokach i przekątnych kwadratu (a=(0,0), d=(10,10))</a></li>
+                </ul>
+                <li><a href="#sec-wnioski">6 Wnioski</a></li>
+            </ul>
+            
+        </div>
+    
+        <!-- Content of the document goes here -->
+        <h2 id="sec-wstep">1 Wstęp</h2>
+
+        <h3 id="sec-cele-cwiczenia">1.1 Cel ćwiczenia</h3>
+        <p>Ćwiczenie wprowadzające w zagadnienia otoczki wypukłej – implementacja algorytmów Grahama oraz Jarvisa wyznaczające otoczkę wypukłą dla zadanych zbiorów, przeprowadzenie testów, wizualizacja i opracowanie wyników.</p>
+
+        <h3 id="sec-program-cwiczenia">1.2 Program ćwiczenia</h3>
+        <ul>
+            <li>Przygotuj program generujący następujące zbiory punktów na płaszczyźnie (współrzędne rzeczywiste typu double):
+                <ul>
+                    <li>a) zawierający 100 losowo wygenerowanych punktów o współrzędnych z przedziału [-100, 100]</li>
+                    <li>b) zawierający 100 losowo wygenerowanych punktów leżących na okręgu o środku (0,0) i promieniu R=10</li>
+                    <li>c) zawierający 100 losowo wygenerowanych punktów leżących na bokach prostokąta o wierzchołkach (-10, 10), (-10,-10), (10,-10), (10,10)</li>
+                    <li>d) zawierający wierzchołki kwadratu (0, 0), (10, 0), (10, 10), (0, 10) oraz punkty wygenerowane losowo w sposób następujący: po 25 punktów na dwóch bokach kwadratu leżących na osiach i po 20 punktów na przekątnych kwadratu</li>
+                </ul>
+            </li>
+            <li>Uruchom wizualizację graficzną utworzonych zbiorów punktów.</li>
+            <li>Zmodyfikuj program z punktu 1 tak, aby możliwe było zadawanie określonych parametrów dla schematów losowania punktów podanych powyżej:
+                <ul>
+                    <li>a) liczba punktów, przedziały dla współrzędnych</li>
+                    <li>b) liczba punktów, środek i promień okręgu</li>
+                    <li>c) liczba punktów, wierzchołki prostokąta</li>
+                    <li>d) wierzchołki kwadratu, liczba punktów na osiach, liczba punktów na przekątnych</li>
+                </ul>
+            </li>
+            <li>Zaimplementuj algorytmy Grahama oraz Jarvisa wyznaczające otoczkę wypukłą dla zadanego zbioru punktów. Przetestuj program na zbiorach z punktu 1 oraz zmodyfikowanych zbiorach z punktu 3. Program powinien pozwolić na zapisanie w pliku wyniku działania algorytmu, czyli ciągu wierzchołków otoczki. Dodaj możliwość sprawdzenia czasu działania algorytmu. Uruchom aplikację graficzną tak, aby można było zilustrować graficznie poszczególne kroki realizacji algorytmu. Jednym kolorem powinny być zaznaczone wszystkie punkty zbioru wyjściowego, drugim kolorem boki aktualnie rozpatrywane, a trzecim boki wielokąta otoczki. Po zakończeniu wyznaczania otoczki wierzchołki otoczki powinny być wyróżnione (osobnym kolorem bądź kształtem).</li>
+            <li>W sprawozdaniu napisz, czy Twój program działał poprawnie dla wszystkich zbiorów danych oraz opisz krótko wnioski dotyczące działania algorytmu dla poszczególnych zbiorów. Napisz, dlaczego wg Ciebie zaproponowano takie zbiory punktów? Które ze zbiorów mogły stwarzać problemy w działaniu algorytmów? Jeśli tak, to jakie i dlaczego? Porównaj czasy działania obu algorytmów w zależności od liczby punktów w poszczególnych zbiorach (a, b, c, d). Dołącz wybrane, istotne ilustracje.</li>
+        </ul>
+
+        <h2 id="sec-wykorzystane-narzedzia">2 Wykorzystane narzędzia</h2>
+        <h3 id="sec-srodowisko">2.1 Środowisko</h3>
+        <p>Ćwiczenie zostało wykonane w Jupyter Notebook wykorzystując język programowania Python oraz dodatkowe biblioteki, które zostały zawarte w projekcie dostarczonym na zajęciach.</p>
+
+        <h3 id="sec-sprzet">2.2 Sprzęt</h3>
+        <p>Do wykonania został wykorzystany procesor Intel(R) Core(TM) I5-10300H 2.50GHz oraz system operacyjny Microsoft Windows 10 64bit ver 22H2.</p>
+
+        <h2 id="sec-przebieg-cwiczen">3 Przebieg ćwiczeń</h2>
+        <h3 id="sec-generowanie-punktow">3.1 Generowanie punktów</h3>
+        <p>Do generowania punktów wykorzystałem funkcję numpy.random.uniform, aby uzyskać równomierny rozkład punktów. Wszystkie funkcje są zaimplementowane w sposób umożliwiający modyfikacje zadanych parametrów.</p>
+        <figure>
+            <img src="1.png">
+          </figure>
+          <figure>
+            <img src="2.png">
+            <figcaption>Rys. 1 - Wizualizacja wygenerowanych punktów</figcaption>
+          </figure>
+        <h3 id="sec-przygotowanie-algorytmu-grahama">3.2 Przygotowanie algorytmu Grahama</h3>
+        <p>Przy implementacji algorytmu Grahama wykorzystałem funkcję cmp_to_key z biblioteki functools, aby wykorzystać funkcję własnej implementacji do ustalania kolejności punktów.</p>
+        <p>Złożoność czasowa: O( n*log(n) )</p>
+        <figure>
+            <img src="3.png">
+            <figcaption>Rys. 2 - Pseudokod algorytmu Grahama</figcaption>
+          </figure>
+        <h3 id="sec-przygotowanie-algorytmu-jarvisa">3.3 Przygotowanie algorytmu Jarvisa</h3>
+        <p>Algorytm korzystający z idei gift-wrapping. Istnieje możliwość wyznaczania fragmentów otoczki (np. górna otoczka). Jeśli ilość punktów otoczki jest ograniczona przez k, wtedy:
+        </p>
+        <p>Złożoność czasowa: O( n*k ) -> O( n^2 )</p>
+        <figure>
+            <img src="4.png">
+            <figcaption>Rys. 3 - Pseudokod algorytmu Jarvisa</figcaption>
+          </figure>
+        <h2 id="sec-wizualizacja-graficzna">4 Wizualizacja graficzna</h2>
+        <p>Poniżej, przedstawione w postaci prezentacji, porównanie działania algorytmu Grahama (lewa strona) i algorytmu Jarvisa (prawa strona):</p>
+        <h3 id="sec-wizualizacja-punktow-z-przedzialu-100-100">4.1 Otoczka punktów z przedziału [-100, 100]</h3>
+        <div class="gif-container">
+            <figure class="gif">
+              <img src="g1.gif" alt="GIF 1">
+              <figcaption>Gif. 1 - Algorytm Grahama</figcaption>
+            </figure>
+            <figure class="gif">
+              <img src="j1.gif" alt="GIF 2">
+              <figcaption>Gif. 2 - Algorytm Jarvisa</figcaption>
+            </figure>
+          </div>
+        <h3 id="sec-wizualizacja-punktow-lezacych-na-okregu-o00-r10">4.2 Otoczka punktów leżących na okręgu (o=(0,0), R=(10))</h3>
+        <div class="gif-container">
+            <figure class="gif">
+              <img src="g2.gif" alt="GIF 1">
+              <figcaption>Gif. 3 - Algorytm Grahama</figcaption>
+            </figure>
+            <figure class="gif">
+              <img src="j2.gif" alt="GIF 2">
+              <figcaption>Gif. 4 - Algorytm Jarvisa</figcaption>
+            </figure>
+          </div>
+        <h3 id="sec-wizualizacja-punktow-lezacych-na-bokach-prostokata-o-wierzcholkach-a-10-10-d-10-10">4.3 Otoczka punktów leżących na bokach prostokąta o wierzchołkach (a=(-10, -10), d=(10, 10))</h3>
+        <div class="gif-container">
+            <figure class="gif">
+              <img src="g3.gif" alt="GIF 1">
+              <figcaption>Gif. 5 - Algorytm Grahama</figcaption>
+            </figure>
+            <figure class="gif">
+              <img src="j3.gif" alt="GIF 2">
+              <figcaption>Gif. 6 - Algorytm Jarvisa</figcaption>
+            </figure>
+          </div>
+        <h3 id="sec-wizualizacja-punktow-na-dwoch-bokach-i-przekatnych-kwadratu-a00-d1010">4.4 Otoczka punktów na dwóch bokach i przekątnych kwadratu (a=(0,0), d=(10,10))</h3>
+        <div class="gif-container">
+            <figure class="gif">
+              <img src="g4.gif" alt="GIF 1">
+              <figcaption>Gif. 7 - Algorytm Grahama</figcaption>
+            </figure>
+            <figure class="gif">
+              <img src="j4.gif" alt="GIF 2">
+              <figcaption>Gif. 8 - Algorytm Jarvisa</figcaption>
+            </figure>
+          </div>
+        <h2 id="sec-porownanie-czasu-dzialania-algorytmow">5 Porównanie czasu działania algorytmów</h2>
+        <h3 id="sec-punkty-z-przedzialu-100-100">5.1 Punkty z przedziału [-100, 100]</h3>
+        <div class="image-container">
+            <figure class="image">
+              <img src="5.png" alt="Image 1">
+            </figure>
+            <figure class="image">
+              <img src="9.png" alt="Image 2">
+            </figure>
+          </div>
+          <d>Rys. 4 - Pomiary czasu dla obu algorytmów i wykres czasu od ilości punktów</d>
+        <h3 id="sec-punkty-lezace-na-okregu-o-00-r10">5.2 Punkty leżące na okręgu (o=(0,0), R=(10))</h3>
+        <div class="image-container">
+            <figure class="image">
+              <img src="6.png" alt="Image 1">
+            </figure>
+            <figure class="image">
+              <img src="10.png" alt="Image 2">
+            </figure>
+          </div>
+          <d>Rys. 5 - Pomiary czasu dla obu algorytmów i wykres czasu od ilości punktów</d>
+        <h3 id="sec-punkty-lezace-na-bokach-prostokata-o-wierzcholkach-a-10-10-d-10-10">5.3 Punkty leżące na bokach prostokąta o wierzchołkach (a=(-10, -10), d=(10, 10))</h3>
+        <div class="image-container">
+            <figure class="image">
+              <img src="7.png" alt="Image 1">
+            </figure>
+            <figure class="image">
+              <img src="11.png" alt="Image 2">
+            </figure>
+          </div>
+          <d>Rys. 6 - Pomiary czasu dla obu algorytmów i wykres czasu od ilości punktów</d>
+        <h3 id="sec-punkty-na-dwoch-bokach-i-przekatnych-kwadratu-a00-d1010">5.4 Punkty na dwóch bokach i przekątnych kwadratu (a=(0,0), d=(10,10))</h3>
+        <div class="image-container">
+            <figure class="image">
+              <img src="8.png" alt="Image 1">
+            </figure>
+            <figure class="image">
+              <img src="12.png" alt="Image 2">
+            </figure>
+          </div>
+          <d>Rys. 7 - Pomiary czasu dla obu algorytmów i wykres czasu od ilości punktów</d>
+        <h2 id="sec-wnioski">6 Wnioski</h2>
+        <p>
+            <ul>
+                <li>Oba algorytmy prawidłowo wyznaczyły otoczki wypukłe dla wszystkich zbiorów punktów. 
+                    Dla zbiorów A i B algorytm Grahama był szybszy, jednak w pozostałych przypadkach to algorytm Jarvisa kończył swoje zadanie pierwszy.</li>
+                <li>Można zauważyć, że algorytm Grahama otrzymuje podobne wyniki czasowe dla różnych zbiorów, w odróżnieniu od algorytmu Jarvisa. 
+                    Spowodowane jest to tym, że złożoność algorytmu Grahama nie zależy od ilości punktów na otoczce, tylko jest stała.
+                </li>
+                <li>Z tego wynika, że przy nieznanym rozkładzie punktów to algorytm Grahama będzie lepszym wyborem. Jednakże dla zbiorów które mają wiele punktów współlinowych, to własnie algorytm Jarvisa będzie naturalnym wyborem.</li>
+            </ul>
+            <br>
+            <br>
+        </p>
+
+
+</div>
+</body>
+
+</html>
