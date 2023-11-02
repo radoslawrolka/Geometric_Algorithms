@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           # Upload entire repository
-          path: 'lab2/Rolka_2_spr/Rolka_2_spr.html'
+          path: 'https://github.com/radoslawrolka/Geometric_Algorithms/blob/main/lab2/Rolka_2_spr/Rolka_2_spr.html'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
