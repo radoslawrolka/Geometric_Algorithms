@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Algorytmy geometryczne - Laboratorium 2 - Sprawozdanie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(51,53,75); /* Light gray background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            page-break-after: always; /* Force page break after each section */
+        }
+
+        @page {
+            size: A4; /* You can specify the desired page size, e.g., A4, letter, etc. */
+            margin: 2cm; /* Adjust margins as needed */
+        }
+
+        .lab-title {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .lab-author {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .lab-date {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .table-of-contents {
+            background-color: #ffffff; /* White paper sheet background */
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .table-of-contents a {
+            text-decoration: none;
+            color: #0073e6; /* Blue link color */
+        }
+
+        .table-of-contents ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .table-of-contents li {
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+
+        .paper-sheet {
+            background-color: #ffffff; /* White paper sheet background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Paper sheet shadow */
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 28px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 15px;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.5;
+            text-align: justify;
+            text-indent: 1.5em; /* Adjust the indent size as needed */
+        }
+
+        d {
+            font-size: 14px;
+            text-align: center;
+            display: block; /* Ensure it's a block-level element for text-align to work */
+            margin: 0 auto; /* Center the block element horizontally */
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            text-align: justify;
+        }
+
+        li {
+            font-size: 15px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            margin: 10px auto;
+        }
+
+        .image img {
+            width: 400px; /* Set the width to your desired size */
+            height: 250px; /* Set the height to your desired size */
+        }
+
+        .image-container {
+            display: flex; /* Display images in a row */
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+        }
+
+        .image {
+            margin: 0 10px; /* Add space between the images */
+            text-align: center; /* Center the text below the images */
+        }
+
+        .gif-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gif {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        /* Style for the text (figcaption) */
+        figcaption {
+            text-align: center; /* Center the text */
+            font-size: 14px; /* Adjust the font size to your preference */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="paper-sheet">
+
+        <div class="table-of-contents">
+            <h1 class="lab-title">Algorytmy geometryczne - Laboratorium 3 - Sprawozdanie</h1>
+            <p class="lab-author">Radosław Rolka<br>Informatyka WI, II rok<br>Gr 6, tydz. A czwartek 13:00</p>
+            <p class="lab-date"></p>
+            <ul>
+                <li><a href="#sec-wstep">1 Wstęp</a></li>
+                <ul>
+                    <li><a href="#sec-cele-cwiczenia">1.1 Cel ćwiczenia</a></li>
+                    <li><a href="#sec-program-cwiczenia">1.2 Program ćwiczenia</a></li>
+                </ul>
+                <li><a href="#sec-wykorzystane-narzedzia">2 Wykorzystane narzędzia</a></li>
+                <ul>
+                    <li><a href="#sec-srodowisko">2.1 Środowisko</a></li>
+                    <li><a href="#sec-sprzet">2.2 Sprzęt</a></li>
+                </ul>
+                <li><a href="#sec-przebieg-cwiczen">3 Przebieg ćwiczeń</a></li>
+                <ul>
+                    <li><a href="#sec-ymonoton">3.1 Y-monotoniczność</a></li>
+                    <li><a href="#sec-classify">3.2 Klasyfikacja wierzchołków</a></li>
+                    <li><a href="#sec-triangulate">3.3 Triangulacja</a></li>
+                </ul>
+                <li><a href="#sec-wnioski">4 Wnioski</a></li>
+            </ul>
+            
+        </div>
+    
+        <!-- Content of the document goes here -->
+        <h2 id="sec-wstep">1 Wstęp</h2>
+
+        <h3 id="sec-cele-cwiczenia">1.1 Cel ćwiczenia</h3>
+        <p>Ćwiczenie wprowadzające w zagadnienia triangulacji – implementacja algorytmów sprawdzających, czy zadany wielokąt jest y-monotoniczny, klasyfikacja wierzchołków w zależności od ich położenia oraz algorytmu do triangulacji wielokątów. Ponadto przeprowadzenie testów, wizualizacja i opracowanie wyników.</p>
+
+        <h3 id="sec-program-cwiczenia">1.2 Program ćwiczenia</h3>
+        <ul>
+            <li>Zaimplementuj procedurę sprawdzającą, czy podany wielokąt jest y-monotoniczny. W sprawozdaniu opisz krótko tę metodę sprawdzania.</li>
+            <li>Zaimplementuj algorytm, który dla zadanego wielokąta bedzie wyszukiwał wierzchołki początkowe, końcowe, łączące, dzielące i prawidłowe. Wierzchołki mają zostać odpowiednio pokolorowane zgodnie z klasyfikacją.</li>
+            <li>Zaimplementuj procedurę triangulacji wielokąta y-monotonicznego (zgodnie z algorytmem opisanym na wykładzie). Program powinien pokazywać kolejne kroki algorytmu (tzn. kolejne tworzone trójkąty).</li>
+            <li>W sprawozdaniu opisz, jak zaimplementowano struktury przechowujące wielokąt oraz utworzona triangulację. Uzasadnij wybór struktur.</li>
+            <li>Przetestuj programy na różnych zestawach danych. W sprawozdaniu napisz, jakiego typu zestawy testowano. Uzasadnij wybór danych testujących.</li>
+        </ul>
+
+        <h2 id="sec-wykorzystane-narzedzia">2 Wykorzystane narzędzia</h2>
+        <h3 id="sec-srodowisko">2.1 Środowisko</h3>
+        <p>Ćwiczenie zostało wykonane w Jupyter Notebook wykorzystując język programowania Python oraz dodatkowe biblioteki, które zostały zawarte w projekcie dostarczonym na zajęciach.</p>
+
+        <h3 id="sec-sprzet">2.2 Sprzęt</h3>
+        <p>Do wykonania został wykorzystany procesor Intel(R) Core(TM) I5-10300H 2.50GHz oraz system operacyjny Microsoft Windows 10 64bit ver 22H2.</p>
+
+        <h2 id="sec-przebieg-cwiczen">3 Przebieg ćwiczeń</h2>
+
+        <h3 id="sec-ymonoton">3.1 Y-monotoniczność</h3>
+        <p>Wielokąt jest y-monotoniczny, wtedy gdy żaden spośród jego wierzchołków nie jest wierzchołkiem łączącym, ani dzielącym.
+          Zaimplementowany algorytm sprawdzający Y-monotoniczność zadanego wielokątu bazuje na powyższej zasadzie, mianowicie przechodzi po wszystkich wierzchołkach
+          przeciwnie do ruchu wskazówek zegara i dla każdej trójki kolejnych punktów sprawdza, czy aktualnie przetwarznego wierzchołka nie można zakwalifikować jako łączącego, czy dzielącego.
+          Jeśli algorytm wykryje takowy punkt, zwraca wartość <em>False</em>. Jednak, gdy pętla zostanie nieprzerwana, wtedy zostanie zwrócona wartość <em>True</em>, co oznacza zakwalifikowanie wielokąta jako y-monotonicznego.
+        </p>
+        <div class="image-container">
+          <figure class="image">
+            <img src="1.png" alt="Image 1">
+            <figcaption>Rys. 1 Wielokąt y-monotoniczny<br>(Poprawna klasyfikacja)</figcaption>
+          </figure>
+          <figure class="image">
+            <img src="2.png" alt="Image 2">
+            <figcaption>Rys. 2 Wielokąt nie y-monotoniczny<br>(Poprawna klasyfikacja)</figcaption>
+          </figure>
+        </div>
+
+        <h3 id="sec-classify">3.2 Klasyfikacja wierzchołków</h3>
+        <p>Klasyfikacja wierzchołków
+          <ul>
+            <li style="background-color: white; color: black;">Wierzchołek <b><span style="color: green;">początkowy</span></b>: obaj jego sąsiedzi leżą <b>poniżej</b> i kąt wewnętrzny ma <b>mniej</b> niż 180 stopni</li>
+            <li style="background-color: white; color: black;">Wierzchołek <b><span style="color: red;">końcowy</span></b>: obaj jego sąsiedzi leżą <b>powyżej</b> i kąt wewnętrzny ma <b>mniej</b> niż 180 stopni</li>
+            <li style="background-color: white; color: black;">Wierzchołek <b><span style="color: cyan;">dzielący</span></b>: obaj jego sąsiedzi leżą <b>poniżej</b> i kąt wewnętrzny ma <b>więcej</b> niż 180 stopni</li>
+            <li style="background-color: white; color: black;">Wierzchołek <b><span style="color: navy;">łączący</span></b>: obaj jego sąsiedzi leżą <b>powyżej</b> i kąt wewnętrzny ma <b>więcej</b> niż 180 stopni</li>
+            <li style="background-color: white; color: black;">Wierzchołek <b><span style="color: brown;">prawidłowy</span></b>: pozostałe przypadki</li>
+        </ul></p> 
+        <p>Algorytm przetwarza każdy wierzchołek i dopasowywuje odpowiednią klasyfikację na podstawie jego położenia oraz sąsiadujących go wierzchołków. 
+        </p>
+
+      </p>
+      <div class="image-container">
+        <figure class="image">
+          <img src="3.png" alt="Image 1">
+        </figure>
+        <figure class="image">
+          <img src="4.png" alt="Image 2">
+        </figure>
+      </div>
+    </p>
+    <div class="image-container">
+      <figure class="image">
+        <img src="5.png" alt="Image 1">
+      </figure>
+      <figure class="image">
+        <img src="6.png" alt="Image 2">
+      </figure>
+    </div>
+      <d>Rys. 3, 4, 5, 6 Klasyfikacje wierzchołków</d>
+
+        <h3 id="sec-triangulate">3.3 Triangulacja</h3>
+        <p>
+          <ul>
+            <li>Algorytm przeprowadzający triangulację wykona swoje zadanie poprawnie, gdy zadany wielokąt jest y-monotoniczny. Aby to sprawdzić wykorzystuję wcześniej zaimplementowaną funkcję.</li>
+            <li>Następnie dzielę wierzchołki na lewy i prawy łańcuch i sortuję malejąco wszystkie wierzchołki względem położenia na osi y</li>
+            <li>Pierwsze dwa wierzchołki trafiają na stos, a pozostałe po kolei przetwarzamy:</li>
+            <ul>
+              <li>Jeśli ostatni wierzchołek stosu jest w innym łańcuchu, niż szczyt stosu to łączymy go z wszystkimi wierzchołkami będącymi na stosie, a stos aktualizujemy zostawiając tylko dwa ostatnio aktualizowane wierzchołki.</li>
+              <li>W przeciwnym wypadku, póki przetwarzany wierzchołek i dwa ostatnie punkty ze stosu tworzą trójkąt znajdujący się wewnątrz wielokąta to usuwamy wierzchołek ze stosu i dodajemy przekątną (jeśli nie jest krawędzią wielokąta). Gdy takowy trójkąt
+                przestanie należeć do wielokąta, to umieszczamy badane wierzchołki na stosie i zaczynamy przetwarzać kolejny.
+              </li>
+            </ul>
+          </ul>
+          
+          
+
+        </p>
+
+        <div class="gif-container">
+          <figure class="gif">
+            <img src="1.gif" alt="GIF 1">
+          </figure>
+          <figure class="gif">
+            <img src="7.png" alt="GIF 2">
+          </figure>
+        </div>
+        <div class="gif-container">
+            <figure class="gif">
+              <img src="2.gif" alt="GIF 1">
+            </figure>
+            <figure class="gif">
+              <img src="8.png" alt="GIF 2">
+            </figure>
+          </div>
+
+    </p>
+    <div class="image-container">
+      <figure class="image">
+        <img src="3.gif" alt="Image 1">
+      </figure>
+      <figure class="image">
+        <img src="9.png" alt="Image 2">
+      </figure>
+    </div>
+  </p>
+  <div class="image-container">
+    <figure class="image">
+      <img src="4.gif" alt="Image 1">
+    </figure>
+    <figure class="image">
+      <img src="10.png" alt="Image 2">
+    </figure>
+  </div>
+    <d>
+        <d>Gif. 1, 2, 3, 4 Triangulacje wielokątów<br>Rys. 7, 8, 9, 10 Ukończone triangulacje wielokątów</d>
+
+        <h2 id="sec-wnioski">5 Wnioski</h2>
+        <p>Wszystkie algorytmy przeszły poprawnie wszystkie testy. Ponadto w trakcie opracowywania 
+          wyników nie zauważyłem żadnych błędów w działaniu. Można zatem stwierdzić, że ich implementacja nie zawiera żadnych błędów,
+           a ich działanie spełnia postawione wymagania.
+        </p>
+
+</div>
+</body>
+
+</html>
+
