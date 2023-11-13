@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Algorytmy geometryczne - Laboratorium 2 - Sprawozdanie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(51,53,75); /* Light gray background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            page-break-after: always; /* Force page break after each section */
+        }
+
+        @page {
+            size: A4; /* You can specify the desired page size, e.g., A4, letter, etc. */
+            margin: 2cm; /* Adjust margins as needed */
+        }
+
+        .lab-title {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .lab-author {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .lab-date {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .table-of-contents {
+            background-color: #ffffff; /* White paper sheet background */
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .table-of-contents a {
+            text-decoration: none;
+            color: #0073e6; /* Blue link color */
+        }
+
+        .table-of-contents ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .table-of-contents li {
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+
+        .paper-sheet {
+            background-color: #ffffff; /* White paper sheet background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Paper sheet shadow */
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 28px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 15px;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.5;
+            text-align: justify;
+            text-indent: 1.5em; /* Adjust the indent size as needed */
+        }
+
+        d {
+            font-size: 14px;
+            text-align: center;
+            display: block; /* Ensure it's a block-level element for text-align to work */
+            margin: 0 auto; /* Center the block element horizontally */
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            text-align: justify;
+        }
+
+        li {
+            font-size: 15px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            margin: 10px auto;
+        }
+
+        .image img {
+            width: 400px; /* Set the width to your desired size */
+            height: 250px; /* Set the height to your desired size */
+        }
+
+        .image-container {
+            display: flex; /* Display images in a row */
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+        }
+
+        .image {
+            margin: 0 10px; /* Add space between the images */
+            text-align: center; /* Center the text below the images */
+        }
+
+        .gif-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gif {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        /* Style for the text (figcaption) */
+        figcaption {
+            text-align: center; /* Center the text */
+            font-size: 14px; /* Adjust the font size to your preference */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="paper-sheet">
+
+        <div class="table-of-contents">
+            <h1 class="lab-title">Algorytmy geometryczne - Laboratorium 4 - Sprawozdanie</h1>
+            <p class="lab-author">Radosław Rolka<br>Informatyka WI, II rok<br>Gr 6, tydz. A czwartek 13:00</p>
+            <p class="lab-date"></p>
+            <ul>
+                <li><a href="#sec-wstep">1 Wstęp</a></li>
+                <ul>
+                    <li><a href="#sec-cele-cwiczenia">1.1 Cel ćwiczenia</a></li>
+                    <li><a href="#sec-program-cwiczenia">1.2 Program ćwiczenia</a></li>
+                </ul>
+                <li><a href="#sec-wykorzystane-narzedzia">2 Wykorzystane narzędzia</a></li>
+                <ul>
+                    <li><a href="#sec-srodowisko">2.1 Środowisko</a></li>
+                    <li><a href="#sec-sprzet">2.2 Sprzęt</a></li>
+                </ul>
+                <li><a href="#sec-przebieg-cwiczen">3 Przebieg ćwiczeń</a></li>
+                <ul>
+                    <li><a href="#sec-generowanie">3.1 Generowanie losowych odcinków na płaszczyźnie</a></li>
+                    <li><a href="#sec-if">3.2 Wykrywanie istnienia przecięć między odcinkami</a></li>
+                    <li><a href="#sec-all">3.3 Detekcja wszystkich przecięć między odcinkami</a></li>
+                </ul>
+                <li><a href="#sec-wnioski">4. Wnioski</a></li>
+            </ul>
+            
+        </div>
+    
+        <!-- Content of the document goes here -->
+        <h2 id="sec-wstep">1. Wstęp</h2>
+
+        <h3 id="sec-cele-cwiczenia">1.1 Cel ćwiczenia</h3>
+        <p>Ćwiczenie wprowadzające w wykrywanie przecięć odcinków – implementacja algorytmów sprawdzających, czy dowolne dwa odcinki się przecinają oraz wykrywanie wszystkich istniejących przcięć. Ponadto przeprowadzenie testów, wizualizacja i opracowanie wyników.</p>
+
+        <h3 id="sec-program-cwiczenia">1.2 Program ćwiczenia</h3>
+        <ul>
+            <li>Zaimplementuj funkcję generującą losowo zadaną liczbę odcinków z podanego zakresu współrzędnych 2D. Odcinki pionowe powinny być eliminowane i żadna para odcinków nie powinna mieć końców o tej samej współrzędnej <em>x</em>. Program powinien umożliwiać zapis i odczyyt zbioru odcinków.</li>
+            <li>Zaimplementuj algorytm zamiatania sprawdzający, czy choć jedna para odcinków w zadanym zbiorze się przecina.</li>
+            <li>Opisz w sprawozdaniu, jak została zaimplementowana struktura stanu (stan miotły) oraz struktura zdarzeń w Twoim programie.</li>
+            <li>Uzupełnij procedurę wykrywającą przecięcie o wizualizację kolejnych kroków (pozycja i stan miotły).</li>
+            <li>Przetestuj program na różnych zestawach danych.</li>
+            <li>Odpowiednio modyfikując program zaimplementuj algorytm wyznaczający wszystkie przecięcia odcinków. Na wyjściu program powinien podawać liczbę wykrytych przecięć, współrzędne przecięć oraz dla każdego przecięcia odcinki, które się przecinają. Zmodyfikuj (jeśli to konieczne) procedurę wizualizacji dla tego zagadnienia.</li>
+            <li>W sprawozdaniu napisz, czy konieczne były zmiany w strukturze zdarzeń. Jeśli tak, to jakie? Czy w przypadku obu algorytmów konieczne są takie same struktury zdarzeń? Odpowiedź uzasadnij.</li>
+            <li>W sprawozdaniu krótko opisz, jak obsługiwane są zdarzenia początku odcinka, końca odcinka i przecięcia odcinków z uwzględnianiem wybranych struktur danych.</li>
+            <li>Przetestuj zmodyfikowany program na różnych zestawach danych.</li>
+            <li>Znajdź i wprowadź taki układ odcinków, przy którym pewne przecięcia będą wykrywane więcej niż jeden raz, Czy Twój program to uwzględnia? Jeśli tak, to jak? Napisz to w sprawozdaniu.</li>
+          </ul>
+
+        <h2 id="sec-wykorzystane-narzedzia">2. Wykorzystane narzędzia</h2>
+        <h3 id="sec-srodowisko">2.1 Środowisko</h3>
+        <p>Ćwiczenie zostało wykonane w Jupyter Notebook wykorzystując język programowania Python oraz dodatkowe biblioteki, które zostały zawarte w projekcie dostarczonym na zajęciach.</p>
+
+        <h3 id="sec-sprzet">2.2 Sprzęt</h3>
+        <p>Do wykonania został wykorzystany procesor Intel(R) Core(TM) I5-10300H 2.50GHz oraz system operacyjny Microsoft Windows 10 64bit ver 22H2.</p>
+
+        <h2 id="sec-przebieg-cwiczen">3. Przebieg ćwiczeń</h2>
+        <h3 id="sec-generowanie">3.1 Generowanie losowych odcinków na płaszczyźnie</h3>
+        <p>Do wygenerowania losowych odcinków na płaszczyźnie wykorzystałem funkcję <em>np.random.uniform</em>, 
+          która zapewnia pseudolosowe generowanie unikalnych liczb. Ponadto żaden odcinek nie jest pionowy, ani żadna para odcinków nie ma końców o tej samej współrzędnej <em>x</em>.</p>
+          <div class="image-container">
+            <figure class="image">
+            <img src="1.png" alt="Image 1">
+            </figure>
+            <figure class="image">
+            <img src="2.png" alt="Image 2">
+            </figure>
+          </div>
+          <d>Rys. 1,2 Przykład wygenerowanych punktów</d>
+
+        <h3 id="sec-if">3.2 Wykrywanie istnienia przecięć między odcinkami</h3>
+          <p>Algorytm wykrywający, czy dowolne dwa odcinki się przecinają implementuje strukturę zwaną <em>"miotłą"</em>.
+          W trakcie <em>zamiatania</em> idziemy po kolejnych punktach krytycznych, posortowanych rosnąco względem współrzędnej <em>x</em>.
+          Te punkty krytyczne, czyli początki i końce odcinków, są przechowywane w kolejce priorytetowej <em>queue.PriorityQueue</em>, nazywanej później <em>Q</em>.
+          W punktach krytycznych aktualizujemy kolejność odcinków względem ich współrzędnej <em>y</em> w danym <em>x</em>. 
+          Implementując skorzystałem ze struktury <em>sortedcontainers.SortedSet</em>, która implementuje drzewo czerwono-czarne i będzie nazywana <em>T</em>.
+          W operacji wstawienia/usunięcia odcinka ze struktury <em>T</em> sprawdzamy funkcją <em>orient</em>, czy odcinki z nowymi sąsiadami się przecinają.
+          Operacje powtarzamy do momentu wykrycia przecięcia, zwracając wartość <em>True</em>, lub do momentu przejścia przez wszystkie punkty krytyczne znajdujące się w <em>T</em> i zwracając wartość <em>False</em>.</p>
+          <p>Złożoność:</p>
+          <ul>
+            <li>Inicjalizowanie listy punktów krytycznych <em>Q</em> - <em>O(n*logn)</em></li>
+            <li>Aktualizowanie struktury <em>T</em> - <em>O(n*logn)</em> </li>
+          </ul>
+          <p><b>Złożoność całkowita - <em>O(n*logn)</em></b></p>
+          <p>Legenda:
+            <ul>
+              <li style="background-color: white; color: black;"><b><span style="color: blue;">Odcinek bazowy</span></b>: Poza przetwarzaniem</li>
+              <li style="background-color: white; color: black;"><b><span style="color: orange;">Odcinek przetwarzany</span></b>: Miotła znajduje się pomiędzy jego początkiem i startem, jest możliwe wykrycie przecięcia</li>
+              <li style="background-color: white; color: black;"><b><span style="color: red;">Miotła</span></b>: Prosta wskazująca aktualne położenia przetwarzanego punktu krytycznego (punkt został dodatkowo zaznaczony).</li>
+              <li style="background-color: white; color: black;"><b><span style="color: red;">Odcinki przecinające się</span></b>: Na końcu odcinki zaznaczone na czerwono to odcinki przecinające się (jeśli takie istnieją).</li>
+          </ul></p> 
+          <div class="gif-container">
+            <figure class="gif">
+              <img src="1.gif" alt="GIF 1">
+            </figure>
+            <figure class="gif">
+              <img src="3.png" alt="IMG 3">
+            </figure>
+          </div>
+          <div class="gif-container">
+            <figure class="gif">
+              <img src="2.gif" alt="GIF 2">
+            </figure>
+            <figure class="gif">
+              <img src="4.png" alt="IMG 4">
+            </figure>
+          </div>
+          <div class="gif-container">
+            <figure class="gif">
+              <img src="3.gif" alt="GIF 1">
+            </figure>
+            <figure class="gif">
+              <img src="5.png" alt="IMG 5">
+            </figure>
+          </div>
+          <d>Gif. 1, 2, 3 Wykrywanie istnienia przecięć<br>Rys. 3, 4, 5 Ukończone wykrywanie istnienia przecięć</d>
+
+        <h3 id="sec-all">3.3 Detekcja wszystkich przecięć między odcinkami</h3>
+        <p>Algorytm wyznaczający wszystkie punkty przecięć między danymi odcinkami bazuje na idei poprzedniego algorytmu.
+          Jedynie różnice dotyczą zachowania w trakcie wykrycia przecięcia, mianowicie zamiast zakończenia pracy programu, punkt przecięcia zostaje dodany do struktury <em>Q</em>,
+          a w trakcie późniejszego jego przetwarzania aktualizujemy strukturę <em>T</em> zamieniając krzyżujące się odcinki kolejnością i sprawdzamy możliwe przecięcia z nowymi sąsiadami.
+          Powyższe instrukcje są  wykonywane dla wszystkich wykrytych przecięć, natomiast reszta metod działa bez zmian.
+          <br>&emsp;&nbsp; Aby uniknąć wielokrotnego dodawania tego samego punktu przcięcia do struktury <em>Q</em>, przechowuję krotki przecięć w zbiorze <em>set</em>, który zapewnia aktualizacje zawartości
+          oraz wyszukiwanie elementów w czasie stałym.
+
+        </p>
+        <p>Złożoność:</p>
+          <ul>
+            <li>Inicjalizowanie listy punktów krytycznych <em>Q</em> - <em>O(n*logn)</em></li>
+            <li>Aktualizowanie struktury <em>T</em> - <em>O((P+n)*logn)</em> </li>
+            <li>Aktualizowanie struktury <em>Q</em> - <em>O(P*logn)</em> </li>
+          </ul>
+          <p>Gdzie <em>P</em> to liczba przecięć <br>
+
+          <b>&emsp;&nbsp; Złożoność całkowita - <em>O((P+n)*logn)</em></b></p>
+          <p>Legenda:
+            <ul>
+              <li style="background-color: white; color: black;"><b><span style="color: blue;">Odcinek bazowy</span></b>: Poza przetwarzaniem</li>
+              <li style="background-color: white; color: black;"><b><span style="color: orange;">Odcinek przetwarzany</span></b>: Miotła znajduje się pomiędzy jego początkiem i startem, jest możliwe wykrycie przecięcia</li>
+              <li style="background-color: white; color: black;"><b><span style="color: red;">Miotła</span></b>: Prosta wskazująca aktualne położenia przetwarzanego punktu krytycznego (punkt został dodatkowo zaznaczony).</li>
+              <li style="background-color: white; color: black;"><b><span style="color: red;">Odcinki przecinające się</span></b>: Na końcu odcinki zaznaczone na czerwono to odcinki przecinające się (jeśli takie istnieją).</li>
+          </ul></p> 
+        <div class="gif-container">
+          <figure class="gif">
+            <img src="6.gif" alt="GIF 1">
+          </figure>
+          <figure class="gif">
+            <img src="6.png" alt="IMG 3">
+          </figure>
+        </div>
+        <div class="gif-container">
+          <figure class="gif">
+            <img src="7.gif" alt="GIF 2">
+          </figure>
+          <figure class="gif">
+            <img src="7.png" alt="IMG 4">
+          </figure>
+        </div>
+        <div class="gif-container">
+          <figure class="gif">
+            <img src="8.gif" alt="GIF 1">
+          </figure>
+          <figure class="gif">
+            <img src="8.png" alt="IMG 5">
+          </figure>
+        </div>
+        <d>Gif. 4, 5, 6 Detekcje wszystkich przecięć<br>Rys. 6, 7, 8 Ukończone detekcje wszystkich przecięć</d>
+
+        <h2 id="sec-wnioski">4. Wnioski</h2>
+        
+        <p>Oba algorytmy przeszły poprawnie wszystkie testy. Ponadto w trakcie opracowywania 
+          wyników nie zauważyłem żadnych błędów w działaniu. Można zatem stwierdzić, że ich implementacja nie zawiera żadnych błędów,
+           a ich działanie spełnia postawione wymagania.</p>
+</div>
+</body>
+</html>
