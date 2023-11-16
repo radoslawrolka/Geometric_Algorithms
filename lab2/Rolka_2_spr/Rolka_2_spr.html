@@ -161,43 +161,43 @@
             <p class="lab-author">Radosław Rolka<br>Informatyka WI, II rok<br>Gr 6, tydz. A czwartek 13:00</p>
             <p class="lab-date"></p>
             <ul>
-                <li><a href="#sec-wstep">1. Wstęp</a></li>
+                <li><a href="#sec-wstep">1 Wstęp</a></li>
                 <ul>
                     <li><a href="#sec-cele-cwiczenia">1.1 Cel ćwiczenia</a></li>
                     <li><a href="#sec-program-cwiczenia">1.2 Program ćwiczenia</a></li>
                 </ul>
-                <li><a href="#sec-wykorzystane-narzedzia">2. Wykorzystane narzędzia</a></li>
+                <li><a href="#sec-wykorzystane-narzedzia">2 Wykorzystane narzędzia</a></li>
                 <ul>
                     <li><a href="#sec-srodowisko">2.1 Środowisko</a></li>
                     <li><a href="#sec-sprzet">2.2 Sprzęt</a></li>
                 </ul>
-                <li><a href="#sec-przebieg-cwiczen">3. Przebieg ćwiczeń</a></li>
+                <li><a href="#sec-przebieg-cwiczen">3 Przebieg ćwiczeń</a></li>
                 <ul>
                     <li><a href="#sec-generowanie-punktow">3.1 Generowanie punktów</a></li>
                     <li><a href="#sec-przygotowanie-algorytmu-grahama">3.2 Przygotowanie algorytmu Grahama</a></li>
                     <li><a href="#sec-przygotowanie-algorytmu-jarvisa">3.3 Przygotowanie algorytmu Jarvisa</a></li>
                 </ul>
-                <li><a href="#sec-wizualizacja-graficzna">4. Wizualizacja graficzna</a></li>
+                <li><a href="#sec-wizualizacja-graficzna">4 Wizualizacja graficzna</a></li>
                 <ul>
                     <li><a href="#sec-wizualizacja-punktow-1">4.1 Otoczka punktów z przedziału [-100, 100]</a></li>
                     <li><a href="#sec-wizualizacja-punktow-2">4.2 Otoczka punktów leżących na okręgu (o=(0,0), R=(10))</a></li>
                     <li><a href="#sec-wizualizacja-punktow-3">4.3 Otoczka punktów leżących na bokach prostokąta o wierzchołkach (a=(-10, -10), d=(10, 10))</a></li>
                     <li><a href="#sec-wizualizacja-punktow-4">4.4 Otoczka punktów na dwóch bokach i przekątnych kwadratu (a=(0,0), d=(10,10))</a></li>
                 </ul>
-                <li><a href="#sec-porownanie-czasu-dzialania-algorytmow">5. Porównanie czasu działania algorytmów</a></li>
+                <li><a href="#sec-porownanie-czasu-dzialania-algorytmow">5 Porównanie czasu działania algorytmów</a></li>
                 <ul>
                     <li><a href="#sec-punkty-1">5.1 Punkty z przedziału [-100, 100]</a></li>
                     <li><a href="#sec-punkty-2">5.2 Punkty leżące na okręgu (o=(0,0), R=(10))</a></li>
                     <li><a href="#sec-punkty-3">5.3 Punkty leżące na bokach prostokąta o wierzchołkach (a=(-10, -10), d=(10, 10))</a></li>
                     <li><a href="#sec-punkty-4">5.4 Punkty na dwóch bokach i przekątnych kwadratu (a=(0,0), d=(10,10))</a></li>
                 </ul>
-                <li><a href="#sec-wnioski">6. Wnioski</a></li>
+                <li><a href="#sec-wnioski">6 Wnioski</a></li>
             </ul>
             
         </div>
     
         <!-- Content of the document goes here -->
-        <h2 id="sec-wstep">1. Wstęp</h2>
+        <h2 id="sec-wstep">1 Wstęp</h2>
 
         <h3 id="sec-cele-cwiczenia">1.1 Cel ćwiczenia</h3>
         <p>Ćwiczenie wprowadzające w zagadnienia otoczki wypukłej – implementacja algorytmów Grahama oraz Jarvisa wyznaczające otoczkę wypukłą dla zadanych zbiorów, przeprowadzenie testów, wizualizacja i opracowanie wyników.</p>
@@ -225,14 +225,14 @@
             <li>W sprawozdaniu napisz, czy Twój program działał poprawnie dla wszystkich zbiorów danych oraz opisz krótko wnioski dotyczące działania algorytmu dla poszczególnych zbiorów. Napisz, dlaczego wg Ciebie zaproponowano takie zbiory punktów? Które ze zbiorów mogły stwarzać problemy w działaniu algorytmów? Jeśli tak, to jakie i dlaczego? Porównaj czasy działania obu algorytmów w zależności od liczby punktów w poszczególnych zbiorach (a, b, c, d). Dołącz wybrane, istotne ilustracje.</li>
         </ul>
 
-        <h2 id="sec-wykorzystane-narzedzia">2. Wykorzystane narzędzia</h2>
+        <h2 id="sec-wykorzystane-narzedzia">2 Wykorzystane narzędzia</h2>
         <h3 id="sec-srodowisko">2.1 Środowisko</h3>
         <p>Ćwiczenie zostało wykonane w Jupyter Notebook wykorzystując język programowania Python oraz dodatkowe biblioteki, które zostały zawarte w projekcie dostarczonym na zajęciach.</p>
 
         <h3 id="sec-sprzet">2.2 Sprzęt</h3>
         <p>Do wykonania został wykorzystany procesor Intel(R) Core(TM) I5-10300H 2.50GHz oraz system operacyjny Microsoft Windows 10 64bit ver 22H2.</p>
 
-        <h2 id="sec-przebieg-cwiczen">3. Przebieg ćwiczeń</h2>
+        <h2 id="sec-przebieg-cwiczen">3 Przebieg ćwiczeń</h2>
         <h3 id="sec-generowanie-punktow">3.1 Generowanie punktów</h3>
         <p>Do generowania punktów wykorzystałem funkcję numpy.random.uniform, aby uzyskać równomierny rozkład punktów. Wszystkie funkcje są zaimplementowane w sposób umożliwiający modyfikacje zadanych parametrów.</p>
         <figure>
@@ -257,7 +257,7 @@
             <img src="4.png">
             <figcaption>Rys. 3 - Pseudokod algorytmu Jarvisa</figcaption>
           </figure>
-        <h2 id="sec-wizualizacja-graficzna">4. Wizualizacja graficzna</h2>
+        <h2 id="sec-wizualizacja-graficzna">4 Wizualizacja graficzna</h2>
         <p>Poniżej, przedstawione w postaci prezentacji, porównanie działania algorytmu Grahama (lewa strona) i algorytmu Jarvisa (prawa strona):</p>
         <h3 id="sec-wizualizacja-punktow-1">4.1 Otoczka punktów z przedziału [-100, 100]</h3>
         <div class="gif-container">
@@ -303,7 +303,7 @@
               <figcaption>Gif. 8 - Algorytm Jarvisa</figcaption>
             </figure>
           </div>
-        <h2 id="sec-porownanie-czasu-dzialania-algorytmow">5. Porównanie czasu działania algorytmów</h2>
+        <h2 id="sec-porownanie-czasu-dzialania-algorytmow">5 Porównanie czasu działania algorytmów</h2>
         <h3 id="sec-punkty-1">5.1 Punkty z przedziału [-100, 100]</h3>
         <div class="image-container">
             <figure class="image">
@@ -344,7 +344,7 @@
             </figure>
           </div>
           <d>Rys. 7 - Pomiary czasu dla obu algorytmów i wykres czasu od ilości punktów</d>
-        <h2 id="sec-wnioski">6. Wnioski</h2>
+        <h2 id="sec-wnioski">6 Wnioski</h2>
         <p>
             <ul>
                 <li>Oba algorytmy prawidłowo wyznaczyły otoczki wypukłe dla wszystkich zbiorów punktów. 
